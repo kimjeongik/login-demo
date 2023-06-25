@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="kind"></div>
+    <ul id="ul"></ul>
+
+
+
+
+
+
+    <form id="myform">
+        제목: <input type="text" name="title" value="" />
+        <br />
+        내용: <input type="text" name="contents" value="" />
+        <br />
+        <input type="button" id="btnSubmit" value="등록" />
+    </form>
+
+
+    <script>
+        $(function() {
+            $('#btnSubmit').click(() => {
+                const title = $('input[name="title"]').val();
+                const contents = $('input[name="contents"]').val();
+
+
+                const data = JSON.stringify({ title: title, contents: contents });
+                const url = 'https://q41l9davch.execute-api.ap-northeast-2.amazonaws.com/prod/board-list';
+                axios.post(url, data)
+                    .then(res => console.log(res))
+                    .catch(err => console.log(err));
+            });
+        });
+       
+       
+    //    axios
+    //     .get('https://www.reddit.com/r/Wallstreetbets/top.json?limit=10&t=year')
+    //     .then(res => {
+    //         const { kind } = res.data;
+
+
+    //         console.log(res);
+    //         // kind 항목을 출력
+    //         $('#kind').text(kind);
+           
+    //         // children 데이터를 가져와서 순차적으로 출력
+    //         const { children } = res.data.data;
+    //         children.forEach(child => {
+    //             const { thumbnail, author } = child.data;
+    //             $('#ul').append(`<li><img src="${thumbnail}"/> ${author}</li>`);
+    //         });
+
+
+    //     })
+    //     .catch(err => console.log(err));
+
+
+    </script>
+</body>
+</html>
